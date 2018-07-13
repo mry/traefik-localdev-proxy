@@ -1,0 +1,13 @@
+version: '3'
+services:
+  proxy:
+    container_name: traefik-localdev-proxy
+    image: emryl/traefik-localdev-proxy
+    restart: unless-stopped
+    ports:
+      - "443:443"
+    volumes:
+      #- ./traefik.toml:/etc/traefik/traefik.toml # Override with custom Traefik configuration
+      - ./cert/:/cert/
+    env_file:
+      - ./local.env # Contains the local variables
